@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>辨证云（R）中医 AI 数智平台介绍</title>
+  <meta name="description" content="辨证云（R）中医 AI 数智平台：覆盖 400+ 病症，95% 符合率（经双盲验证）。以中医 AI 辨证施治双引擎，贯通病→证→方→药→量→制的完整推理链路。" />
+  <meta name="theme-color" content="#0d9488" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="辨证云（R）中医 AI 数智平台介绍" />
+  <meta property="og:description" content="覆盖 400+ 病症，95% 符合率（经双盲验证）。中医 AI 辨证施治双引擎，贯通病→证→方→药→量→制完整推理链路。" />
+  <meta property="og:image" content="images/page_03.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --c-bg: #f8fafc;
+      --c-surface: #ffffff;
+      --c-surface-2: #f1f5f9;
+      --c-border: #e2e8f0;
+      --c-accent: #0d9488;
+      --c-accent-2: #0ea5e9;
+      --c-accent-soft: rgba(13, 148, 136, 0.08);
+      --c-text: #0f172a;
+      --c-text-2: #475569;
+      --c-text-3: #64748b;
+      --f-display: 'ZCOOL XiaoWei', 'Noto Serif SC', serif;
+      --f-body: 'Noto Sans SC', sans-serif;
+      --f-serif: 'Noto Serif SC', serif;
+      --radius: 16px;
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.1);
+      --tech-glow: 0 0 40px rgba(13, 148, 136, 0.12);
+      --tech-glow-blue: 0 0 40px rgba(14, 165, 233, 0.12);
+      --grid-line: rgba(13, 148, 136, 0.06);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--f-body);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(13, 148, 136, 0.04) 0%, transparent 35%),
+        radial-gradient(circle at 100% 25%, rgba(14, 165, 233, 0.04) 0%, transparent 35%),
+        var(--c-bg);
+      color: var(--c-text);
+      line-height: 1.75;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { margin: 0; font-family: var(--f-display); line-height: 1.3; }
+    p { margin: 0 0 1em; }
+    a { color: var(--c-accent); text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* Global tech background */
+    .tech-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .tech-bg .particles {
+      position: absolute;
+      inset: 0;
+      opacity: 0.55;
+    }
+    .tech-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%230d9488' stroke-width='0.35' opacity='0.14'%3E%3Cpath d='M0 0 H80 M0 0 V80'/%3E%3Cpath d='M40 0 V80 M0 40 H80' stroke-dasharray='2 4'/%3E%3Cpath d='M0 20 H80 M0 60 H80 M20 0 V80 M60 0 V80' stroke-dasharray='1 8'/%3E%3C/g%3E%3Ccircle cx='0' cy='0' r='1' fill='%230ea5e9' opacity='0.2'/%3E%3Ccircle cx='80' cy='0' r='1' fill='%230ea5e9' opacity='0.2'/%3E%3Ccircle cx='0' cy='80' r='1' fill='%230ea5e9' opacity='0.2'/%3E%3Ccircle cx='80' cy='80' r='1' fill='%230ea5e9' opacity='0.2'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%230d9488' opacity='0.25'/%3E%3C/svg%3E");
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, transparent 80%);
+      animation: gridDrift 24s linear infinite;
+    }
+    .tech-grid::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(13, 148, 136, 0.04) 45%, rgba(14, 165, 233, 0.04) 55%, transparent 100%);
+      background-size: 100% 220%;
+      background-position: 0 -220%;
+      animation: globalScan 8s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .tech-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: orbFloat 18s ease-in-out infinite;
+    }
+    .tech-orb.orb-1 {
+      width: 420px; height: 420px;
+      background: rgba(13, 148, 136, 0.22);
+      top: -120px; left: 15%;
+      animation-delay: 0s;
+    }
+    .tech-orb.orb-2 {
+      width: 320px; height: 320px;
+      background: rgba(14, 165, 233, 0.22);
+      top: 35%; right: -80px;
+      animation-delay: -6s;
+    }
+    .tech-orb.orb-3 {
+      width: 260px; height: 260px;
+      background: rgba(13, 148, 136, 0.18);
+      bottom: 10%; left: 25%;
+      animation-delay: -12s;
+    }
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -40px) scale(1.08); }
+      66% { transform: translate(-20px, 30px) scale(0.95); }
+    }
+
+    /* Navigation */
+    #nav-sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 260px; height: 100vh;
+      background: var(--c-surface);
+      border-right: 1px solid var(--c-border);
+      padding: 32px 20px;
+      z-index: 100;
+      overflow-y: auto;
+      box-shadow: var(--shadow);
+    }
+    #nav-sidebar .brand {
+      font-family: var(--f-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--c-accent);
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    #nav-sidebar .brand-sub {
+      font-size: 12px;
+      color: var(--c-text-3);
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+    #nav-sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    #nav-sidebar li { margin-bottom: 4px; }
+    #nav-sidebar a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--c-text-2);
+      transition: all 0.2s;
+    }
+    #nav-sidebar a:hover, #nav-sidebar a.active {
+      background: var(--c-accent-soft);
+      color: var(--c-accent);
+    }
+    #nav-toggle {
+      display: none;
+      position: fixed;
+      top: 16px; left: 16px;
+      z-index: 101;
+      width: 44px; height: 44px;
+      border: none;
+      border-radius: 10px;
+      background: var(--c-surface);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font-size: 20px;
+      color: var(--c-accent);
+    }
+
+    /* Main content */
+    #main {
+      margin-left: 260px;
+      min-height: 100vh;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 8%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(13, 148, 136, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 100%),
+        linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(13, 148, 136, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13, 148, 136, 0.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(13, 148, 136, 0.15) 0%, transparent 25%),
+        radial-gradient(circle at 70% 80%, rgba(14, 165, 233, 0.12) 0%, transparent 30%);
+      animation: heroPulse 10s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes heroPulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    @keyframes gridDrift {
+      0% { background-position: 0 0; }
+      100% { background-position: 80px 80px; }
+    }
+    @keyframes globalScan {
+      0%, 100% { background-position: 0 -220%; opacity: 0; }
+      45% { opacity: 0.6; }
+      55% { opacity: 0.6; }
+      80% { background-position: 0 120%; opacity: 0; }
+    }
+    @keyframes ringExpand {
+      0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(1.35); opacity: 0; }
+    }
+    @keyframes sectionScan {
+      0% { background-position: 0 0, 0 -250%; }
+      50% { background-position: 0 0, 0 100%; }
+      100% { background-position: 0 0, 0 -250%; }
+    }
+    @keyframes isoPulse {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.5; }
+    }
+    @keyframes cornerBreathe {
+      0%, 100% { opacity: 0.25; }
+      50% { opacity: 0.45; }
+    }
+    @keyframes cardTextureFlow {
+      0% { background-position: 0 0; }
+      100% { background-position: 72px 72px; }
+    }
+    .hero-deco {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-deco .ring {
+      position: absolute;
+      border: 1px solid rgba(13, 148, 136, 0.08);
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation: ringExpand 6s ease-out infinite;
+    }
+    .hero-deco .ring.r1 { width: 600px; height: 600px; animation-delay: 0s; }
+    .hero-deco .ring.r2 { width: 900px; height: 900px; opacity: 0.6; animation-delay: -2s; }
+    .hero-deco .ring.r3 { width: 1200px; height: 1200px; opacity: 0.4; animation-delay: -4s; }
+    .hero-deco .dot {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(13, 148, 136, 0.25);
+      box-shadow: 0 0 12px rgba(13, 148, 136, 0.35);
+      animation: dotPulse 3s ease-in-out infinite;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 900px;
+    }
+    .hero-tag {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: var(--c-accent-soft);
+      color: var(--c-accent);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 28px;
+      border: 1px solid rgba(13, 148, 136, 0.15);
+    }
+    .hero h1 {
+      font-size: clamp(40px, 5.5vw, 72px);
+      margin-bottom: 24px;
+      color: var(--c-text);
+      text-shadow: 0 2px 30px rgba(13, 148, 136, 0.12);
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-accent-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 24px rgba(13, 148, 136, 0.25));
+    }
+    .hero h1 .ai-mark {
+      font-family: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-weight: 900;
+      font-style: normal;
+      letter-spacing: 0.12em;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: clamp(18px, 2vw, 24px);
+      color: var(--c-text-2);
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .hero-features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 48px;
+    }
+    .hero-features span {
+      padding: 10px 18px;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 999px;
+      font-size: 14px;
+      color: var(--c-text-2);
+      box-shadow: var(--shadow-sm);
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.3); }
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--c-text-3);
+      font-size: 13px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* Sections */
+    section {
+      position: relative;
+      padding: 100px 8%;
+      border-bottom: 1px solid var(--c-border);
+    }
+    section:nth-child(even) {
+      background:
+        radial-gradient(circle at 90% 10%, rgba(14, 165, 233, 0.03) 0%, transparent 30%),
+        var(--c-surface);
+    }
+    section:nth-child(odd) {
+      background:
+        radial-gradient(circle at 10% 90%, rgba(13, 148, 136, 0.03) 0%, transparent 30%),
+        var(--c-bg);
+    }
+    section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%230d9488' stroke-width='0.4' opacity='0.14'%3E%3Cpath d='M40 40 L80 60 M120 40 L80 60 M40 120 L80 100 M120 120 L80 100'/%3E%3Cpath d='M80 60 L80 100'/%3E%3Cpath d='M40 40 L40 120 M120 40 L120 120' stroke-dasharray='2 6'/%3E%3C/g%3E%3Ccircle cx='40' cy='40' r='2' fill='%230d9488' opacity='0.22'/%3E%3Ccircle cx='120' cy='40' r='2' fill='%230d9488' opacity='0.22'/%3E%3Ccircle cx='40' cy='120' r='2' fill='%230d9488' opacity='0.22'/%3E%3Ccircle cx='120' cy='120' r='2' fill='%230d9488' opacity='0.22'/%3E%3Ccircle cx='80' cy='60' r='2.5' fill='%230ea5e9' opacity='0.28'/%3E%3Ccircle cx='80' cy='100' r='2.5' fill='%230ea5e9' opacity='0.28'/%3E%3C/svg%3E"),
+        linear-gradient(180deg, transparent 0%, rgba(13, 148, 136, 0.03) 45%, rgba(14, 165, 233, 0.03) 55%, transparent 100%);
+      background-size: 160px 160px, 100% 250%;
+      background-position: 0 0, 0 -250%;
+      opacity: 0.6;
+      z-index: 0;
+      animation: sectionScan 7s ease-in-out infinite;
+    }
+    section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%230d9488' stroke-width='0.35' opacity='0.11'%3E%3Cpath d='M32 0 L64 16 L64 48 L32 64 L0 48 L0 16 Z'/%3E%3Cpath d='M32 0 L32 32 L0 48 M32 32 L64 48'/%3E%3Cpath d='M16 8 L16 40 L48 56 L48 24 Z'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='1.5' fill='%230ea5e9' opacity='0.2'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+      opacity: 0.45;
+      z-index: 0;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 100%);
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 100%);
+      animation: isoPulse 10s ease-in-out infinite;
+    }
+    .section-corner {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.3;
+      animation: cornerBreathe 5s ease-in-out infinite;
+    }
+    .section-corner.bottom-right {
+      animation-delay: -2.5s;
+    }
+    .section-corner::before,
+    .section-corner::after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(90deg, var(--c-accent), transparent);
+      box-shadow: 0 0 8px rgba(13, 148, 136, 0.2);
+    }
+    .section-corner::before {
+      top: 0; left: 0;
+      width: 56px; height: 2px;
+    }
+    .section-corner::after {
+      top: 0; left: 0;
+      width: 2px; height: 56px;
+    }
+    .section-corner .corner-inner {
+      position: absolute;
+      top: 6px; left: 6px;
+      width: 36px; height: 36px;
+      border-left: 1px solid rgba(13, 148, 136, 0.15);
+      border-top: 1px solid rgba(13, 148, 136, 0.15);
+      pointer-events: none;
+    }
+    .section-corner.top-left {
+      top: 36px; left: 36px;
+    }
+    .section-corner.bottom-right {
+      bottom: 36px; right: 36px;
+      transform: rotate(180deg);
+    }
+    section > * { position: relative; z-index: 1; }
+
+    .section-header {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--c-accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-label::before,
+    .section-label::after {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c-accent));
+    }
+    .section-label::after {
+      background: linear-gradient(90deg, var(--c-accent), transparent);
+    }
+    .section-header h2 {
+      font-size: clamp(32px, 3.5vw, 44px);
+      margin-bottom: 16px;
+    }
+    .section-header p {
+      font-size: 18px;
+      color: var(--c-text-2);
+    }
+
+    /* Cards & grids */
+    .card {
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%),
+        var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--c-accent) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg fill='none' stroke='%230d9488' stroke-width='0.4' opacity='0.11'%3E%3Cpath d='M24 0 L48 12 L48 36 L24 48 L0 36 L0 12 Z'/%3E%3Cpath d='M24 0 L24 24 L0 36 M24 24 L48 36'/%3E%3C/g%3E%3Ccircle cx='24' cy='24' r='1.2' fill='%230ea5e9' opacity='0.2'/%3E%3C/svg%3E");
+      background-size: 72px 72px;
+      opacity: 0.4;
+      z-index: 0;
+      border-radius: inherit;
+      animation: cardTextureFlow 16s linear infinite;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg), var(--tech-glow);
+      border-color: rgba(13, 148, 136, 0.25);
+    }
+    .card:hover::before { opacity: 1; }
+    .card > * { position: relative; z-index: 1; }
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: var(--c-text);
+    }
+    .card h4 {
+      font-size: 17px;
+      margin-bottom: 10px;
+      color: var(--c-accent);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Figures */
+    figure {
+      margin: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      box-shadow: var(--shadow);
+    }
+    figure img {
+      width: 100%;
+      cursor: zoom-in;
+      transition: transform 0.3s;
+    }
+    figure:hover img { transform: scale(1.01); }
+    .img-wrap {
+      position: relative;
+      display: block;
+    }
+    figcaption {
+      padding: 16px 20px;
+      font-size: 14px;
+      color: var(--c-text-2);
+      background: var(--c-surface-2);
+      border-top: 1px solid var(--c-border);
+      line-height: 1.6;
+    }
+    figcaption strong {
+      display: block;
+      color: var(--c-text);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    /* Demo showcase */
+    .demo-showcase {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .demo-browser-frame {
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      margin-bottom: 28px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .demo-browser-frame:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg), var(--tech-glow);
+    }
+    .demo-window-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 18px;
+      background: var(--c-surface-2);
+      border-bottom: 1px solid var(--c-border);
+    }
+    .demo-window-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .demo-window-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #cbd5e1;
+    }
+    .demo-window-dots span:nth-child(1) { background: #f87171; }
+    .demo-window-dots span:nth-child(2) { background: #fbbf24; }
+    .demo-window-dots span:nth-child(3) { background: #34d399; }
+    .demo-url-bar {
+      flex: 1;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--c-text-3);
+      text-align: center;
+      font-family: var(--f-body);
+    }
+    .demo-figure {
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+    .demo-figure .img-wrap {
+      display: block;
+    }
+    .demo-features {
+      margin-bottom: 28px;
+    }
+    .demo-features .card {
+      text-align: center;
+      padding: 26px 22px;
+    }
+    .demo-features .card h4 {
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    .demo-features .card p {
+      font-size: 14px;
+      margin: 0;
+      color: var(--c-text-2);
+      line-height: 1.6;
+    }
+    .demo-caption {
+      text-align: center;
+      color: var(--c-text-2);
+      font-size: 15px;
+      line-height: 1.8;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .demo-caption strong {
+      color: var(--c-text);
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--c-accent) 0%, var(--c-accent-2) 100%);
+      box-shadow: 0 0 12px rgba(13, 148, 136, 0.35);
+    }
+    .timeline-item {
+      position: relative;
+      padding: 0 0 32px 32px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -35px;
+      top: 1px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--c-surface);
+      border: 3px solid var(--c-accent);
+      box-shadow: 0 0 0 4px var(--c-accent-soft), 0 0 14px rgba(13, 148, 136, 0.3);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .timeline-item:hover::before {
+      transform: scale(1.15);
+      box-shadow: 0 0 0 6px var(--c-accent-soft), 0 0 20px rgba(13, 148, 136, 0.45);
+    }
+    .timeline-year {
+      display: inline-block;
+      font-family: var(--f-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--c-accent);
+      margin-bottom: 6px;
+    }
+    .timeline-item p { color: var(--c-text-2); font-size: 15px; }
+
+    /* Stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto 40px;
+    }
+    .stat-box {
+      position: relative;
+      text-align: center;
+      padding: 28px 20px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.9) 100%),
+        var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+    .stat-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--c-accent), transparent);
+      opacity: 0.6;
+    }
+    .stat-box:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg), var(--tech-glow);
+    }
+    .stat-box .number {
+      font-family: var(--f-display);
+      font-size: 40px;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-accent-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 16px rgba(13, 148, 136, 0.22));
+    }
+    .stat-box .label { font-size: 14px; color: var(--c-text-2); }
+
+    /* Feature list */
+    .feature-list { list-style: none; padding: 0; margin: 0; }
+    .feature-list li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 14px;
+      color: var(--c-text-2);
+    }
+    .feature-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--c-accent);
+    }
+
+    /* Quote */
+    blockquote {
+      margin: 0;
+      padding: 28px 32px;
+      background: var(--c-accent-soft);
+      border-left: 4px solid var(--c-accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-family: var(--f-serif);
+      font-size: 17px;
+      color: var(--c-text-2);
+      line-height: 1.8;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.94);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    #lightbox.active { display: flex; opacity: 1; }
+    #lightbox .lightbox-img-wrap {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+      max-height: 90vh;
+    }
+    #lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+    }
+    #lightbox .lightbox-video-link {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 14%;
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      background: transparent;
+      border-radius: 0 0 8px 8px;
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity 0.25s, background 0.25s;
+      pointer-events: none;
+    }
+    #lightbox .lightbox-video-link.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #lightbox .lightbox-video-link:hover {
+      background: rgba(13, 148, 136, 0.18);
+    }
+    #lightbox .lightbox-video-link.page-19-top-video-link {
+      top: 3.8%;
+      left: auto;
+      right: 0;
+      bottom: auto;
+      width: 28%;
+      max-width: 280px;
+      height: 3.2%;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 24px;
+    }
+    #lightbox .lightbox-video-link.page-19-top-video-link .video-link-hint {
+      font-size: clamp(8px, 0.9vh, 14px);
+      line-height: 1;
+    }
+    #lightbox .lightbox-video-link .video-link-hint {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 14px;
+      font-weight: 500;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      pointer-events: none;
+    }
+    #lightbox .close {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      color: #fff;
+      font-size: 36px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    #lightbox .caption {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      text-align: center;
+      max-width: 800px;
+    }
+
+    /* Back to top */
+    #back-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: var(--c-surface);
+      color: var(--c-accent);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      font-size: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 99;
+    }
+    #back-top.visible { opacity: 1; visibility: visible; }
+
+    /* Footer */
+    footer {
+      margin-left: 260px;
+      padding: 60px 8%;
+      text-align: center;
+      background: var(--c-text);
+      color: rgba(255,255,255,0.7);
+    }
+    footer h3 {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    footer .channels {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    footer .channel {
+      padding: 12px 24px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      #nav-sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+      #nav-sidebar.open { transform: translateX(0); }
+      #nav-toggle { display: block; }
+      #main, footer { margin-left: 0; }
+    }
+    @media (max-width: 640px) {
+      section { padding: 64px 5%; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .hero { min-height: auto; padding: 120px 5% 80px; }
+    }
+
+    /* Print */
+    @media print {
+      #nav-sidebar, #nav-toggle, #back-top, .scroll-hint { display: none; }
+      #main, footer { margin-left: 0; }
+      section { padding: 40px 5%; page-break-inside: avoid; }
+      figure { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Global tech background -->
+  <div class="tech-bg" aria-hidden="true">
+    <canvas class="particles" id="particles-canvas"></canvas>
+    <div class="tech-grid"></div>
+    <div class="tech-orb orb-1"></div>
+    <div class="tech-orb orb-2"></div>
+    <div class="tech-orb orb-3"></div>
+  </div>
+
+  <button id="nav-toggle" aria-label="打开导航">☰</button>
+  <nav id="nav-sidebar">
+    <div class="brand">辨证云</div>
+    <div class="brand-sub">中医 AI 数智平台<br/>Powered by zydsoft</div>
+    <ul>
+      <li><a href="#hero" class="active">首页</a></li>
+      <li><a href="#rd">研发历程</a></li>
+      <li><a href="#demo1">系统展示</a></li>
+      <li><a href="#five-same">五同五不同</a></li>
+      <li><a href="#principles">核心原则</a></li>
+      <li><a href="#innovations">创新特色</a></li>
+      <li><a href="#nn">AI 辨证神经网络</a></li>
+      <li><a href="#architecture">应用架构全景</a></li>
+      <li><a href="#base-model">基础模型</a></li>
+      <li><a href="#disease-model">专病模型</a></li>
+      <li><a href="#shanghan">伤寒论经方大师</a></li>
+      <li><a href="#cases">成功案例</a></li>
+      <li><a href="#heritage">数智传承平台</a></li>
+      <li><a href="#scenarios">服务场景</a></li>
+      <li><a href="#contact">体验入口</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-deco">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+        <div class="dot" style="top:22%;left:18%;"></div>
+        <div class="dot" style="top:32%;right:22%;animation-delay:0.8s;"></div>
+        <div class="dot" style="bottom:28%;left:28%;animation-delay:1.4s;"></div>
+        <div class="dot" style="bottom:18%;right:18%;animation-delay:2.2s;"></div>
+        <div class="dot" style="top:48%;left:8%;animation-delay:1.0s;"></div>
+        <div class="dot" style="top:58%;right:10%;animation-delay:1.8s;"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-tag">基于人工神经网络架构 · 40 年临床验证</div>
+        <h1>辨证云 <span>中医 <em class="ai-mark">AI</em> 数智平台</span></h1>
+        <p class="hero-subtitle">
+          基础模型 + 专病模型 · 数据及训练引擎 & 算法及规则引擎<br/>
+          中医临床辅助辨证平台 · 中医数智传承零代码开发平台<br/>
+          名老中医专科专病智能体集群（Agent Cluster）
+        </p>
+        <div class="hero-features">
+          <span>中医临床辅助辨证</span>
+          <span>数智传承零代码开发</span>
+          <span>名老中医智能体集群</span>
+          <span>双引擎推理</span>
+          <span>400+ 病症覆盖</span>
+        </div>
+      </div>
+      <div class="scroll-hint">向下滚动浏览完整介绍 ↓</div>
+    </section>
+
+    <!-- R&D History -->
+    <section id="rd">
+      <div class="section-header">
+        <div class="section-label">R&D History</div>
+        <h2>研发历程</h2>
+        <p>从国家“七五”科技攻关到全国 800 县域医联体推广，四十年持续迭代与临床验证</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item"><span class="timeline-year">1986</span><p>主要研究人员承担国家“七五”科技攻关及科技部、教育部中医信息化和专家系统项目。</p></div>
+        <div class="timeline-item"><span class="timeline-year">1990</span><p>完成 4000 多例临床验证和专家鉴定，作为首例中医类软件技术出口项目推广到美国等数十个国家和地区。</p></div>
+        <div class="timeline-item"><span class="timeline-year">1992</span><p>在北美、欧洲、东南亚近千所中医及针灸医疗和教育机构推广应用。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2012</span><p>系统全面优化升级，并开发 iOS 和安卓移动端版本。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2017</span><p>开发全科医生助手机器人，开展国家卫计委智能赋能基层医疗示范项目部署。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2018</span><p>全科医生助手机器人赋能基层医疗/医共体建设，在安徽省旌德县推广应用至村级卫生室。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2019</span><p>开放 API 接口支持第三方调用服务，医生版（PC、H5、小程序）上线。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2021</span><p>系统对接企业微信，实现医生、患者、诊所、药店服务、药品电商平台一体化。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2022</span><p>助力香港新冠诊疗与防控，推出中医 AI 数智化零代码开发平台，开展中医云传承服务。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2023</span><p>借助科大讯飞“智医助理”平台，助力全国基层医疗，在安徽亳州、滁州、宣城 300 余家乡镇卫生院上线应用。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2024</span><p>历时两年开发完成并发布张仲景《伤寒杂病论》六经辨证和金匮杂病“经方大师”系列；开始在全国 800 多个县域医联体推广。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2025</span><p>在宁夏回族自治区中医院、固原市中医院及下属县级中医院和乡镇卫生院部署应用；国医大师朱良春数智传承工作室正式落地推广；同仁堂连锁药店及医馆试运行上线；成为北京市东城区“AI 六小龙”企业。</p></div>
+        <div class="timeline-item"><span class="timeline-year">2026</span><p>浙江省中医院互联网医院 HIS 系统对接、浙江省名中医研究院数智传承项目规划；山西省儿童医院、晋中市妇幼保健院等中医数智传承项目启动；山东省潍坊市益都中心医院 HIS 系统对接；与科大讯飞达成全国战略合作；发布支持混合专家模型（MoE）并行推理的专家会诊功能。</p></div>
+      </div>
+    </section>
+
+    <!-- System Demo 1 -->
+    <section id="demo1">
+      <div class="section-header">
+        <div class="section-label">System Demo</div>
+        <h2>系统展示（一）</h2>
+        <p>中医 AI 传承应用平台：胃脘痛【徐经世专科】辨证施治演示</p>
+      </div>
+      <div class="demo-showcase">
+        <div class="demo-browser-frame">
+          <div class="demo-window-header">
+            <div class="demo-window-dots"><span></span><span></span><span></span></div>
+            <div class="demo-url-bar">c.zydsoft.cn</div>
+          </div>
+          <figure class="demo-figure">
+            <div class="img-wrap">
+              <img src="images/page_03.webp" alt="辨证云医生端 PC 版" loading="lazy" data-caption="辨证云医生端 PC 版（c.zydsoft.cn）：以胃脘痛【徐经世专科】为例，展示中医 AI 辨证施治的完整工作流。" / decoding="async" />
+            </div>
+          </figure>
+        </div>
+        <div class="grid-4 demo-features">
+          <div class="card">
+            <h4>多终端入口</h4>
+            <p>PC、H5、小程序、APP 与 Chat Box 全端覆盖，随时随地接诊。</p>
+          </div>
+          <div class="card">
+            <h4>四诊合参</h4>
+            <p>基于症状主症，智能输出证型、治法、主方与适宜疗法。</p>
+          </div>
+          <div class="card">
+            <h4>推理可视化</h4>
+            <p>可视化辨证思维链，辅助医生理解 AI 决策依据。</p>
+          </div>
+          <div class="card">
+            <h4>疗效闭环</h4>
+            <p>支持疗效评估、复诊一体化与处方全周期管理。</p>
+          </div>
+        </div>
+        <p class="demo-caption"><strong>辨证云医生端 PC 版</strong>以胃脘痛【徐经世专科】为例，展示中医 AI 辨证施治的完整工作流，覆盖症状采集、证型推理、主方推荐与加减化裁。点击图片可放大查看，放大后底部视频链接可点击播放。</p>
+      </div>
+    </section>
+
+    <!-- 五同五不同 -->
+    <section id="five-same">
+      <div class="section-header">
+        <div class="section-label">Five Same, Five Different</div>
+        <h2>中医 AI 辨证的“五同五不同”</h2>
+        <p>通过双引擎推理，还原真实临床环境下中医辨证施治的复杂性与个性化</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h4>同病不同证</h4><p>相同的病症通过中医 AI 引擎推理可以辨证出不同的证型，体现辨证论治的个体化核心。</p></div>
+        <div class="card"><h4>同证不同方</h4><p>相同的证型可以通过中医 AI 推理辨证出不同的中药配方，匹配不同流派与专家经验。</p></div>
+        <div class="card"><h4>同方不同药</h4><p>通过中医 AI 推理辨证实现用药的加减配伍，灵活调整处方组成。</p></div>
+        <div class="card"><h4>同药不同量</h4><p>通过中医 AI 推理辨证根据患者的实际症候，实现精确的用药用量。</p></div>
+        <div class="card"><h4>同量不同制</h4><p>根据患者的实际症候，中医 AI 还可以推理辨证出药物不同的炮制方法。</p></div>
+      </div>
+    </section>
+
+    <!-- Core Principles -->
+    <section id="principles">
+      <div class="section-header">
+        <div class="section-label">Core Principles</div>
+        <h2>核心原则</h2>
+        <p>安全、有效、专业、全面——为临床提供可信赖的中医 AI 辅助决策</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>安全性</h3>
+          <p>数百万患者临床实际应用，无一例医疗纠纷和用户投诉，系统经过长期真实世界验证。</p>
+        </div>
+        <div class="card">
+          <h3>有效性</h3>
+          <p>经双盲验证，专科病种与中医专家诊疗路径及主方符合率达 95% 以上。</p>
+        </div>
+        <div class="card">
+          <h3>专业性</h3>
+          <p>为医生提供专业的中医辨证施治辅助诊疗系统，为大众用户提供常见病症的中医辨证自诊工具。</p>
+        </div>
+        <div class="card">
+          <h3>全面性</h3>
+          <p>涵盖 400 余种病症，提供临床标准诊疗路径和国医大师、名老中医专病专科数字分身方案。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Innovations -->
+    <section id="innovations">
+      <div class="section-header">
+        <div class="section-label">More Innovations</div>
+        <h2>更多的创新与特色</h2>
+        <p>多维度症候建模，提升辨证精准度与个性化治疗能力</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>症候程度评估</h3>
+          <p>将患者的症候频次和严重程度划分为五个等级：偶尔（略微）、较少（有点）、较多（一般）、很多（非常）、总是（极其），为问诊提供客观化标准。通过系统化的评估，把患者主观感受量化为客观数据，避免描述不清或感知差异导致的诊断偏差，提高治疗有效性和准确性。</p>
+        </div>
+        <div class="card">
+          <h3>子午归经（发作时间）</h3>
+          <p>子午归经是中医圣贤发现的规律，人体十二经脉对应每日十二个时辰，气血在不同时辰有盛有衰。辨证云将古代智慧与现代人工智能算法深度融合，通过精准分析症候的发作时间，生成更为个性化、精准的治疗方案。</p>
+        </div>
+        <div class="card">
+          <h3>六经传变（持续时日）</h3>
+          <p>六经传变指伤寒病按太阳、阳明、少阳、太阴、少阴、厥阴等六经的病理阶段传变规律，也可用于定义症候发作持续时间。系统将六经传变理论与现代人工智能算法相结合，通过对患者症候持续时日的跟踪分析，提供更为个性化和精准的治疗方案。</p>
+        </div>
+        <div class="card">
+          <h3>辨证 AI + 全面的治疗方案</h3>
+          <p>基于人工神经网络，通过基础模型创建专病模型，提供数据和算法的双推理引擎。由主症入手，四诊合参，建立中医辨证复合推理模型，模拟临床真实环境下的辨证施治过程，输出理法方药，并提供传统方剂、现代中成药、针灸、指压、食疗药膳等适宜疗法的多种处方组合。</p>
+        </div>
+        <div class="card">
+          <h3>合病合方</h3>
+          <p>合病或合证指两个或以上病/证型的症候同时出现，呈现多证共存、病情复杂、变化多端的特点。系统通过详尽的推理规则和数据分析，将合证的量化特征以数据形式提供给医者，作为临证决策是否需要“合方”的依据。例如胁痛患者同时出现肝气郁结和瘀血阻络证，可按照疏肝理气与活血通络原则同时组方。</p>
+        </div>
+        <div class="card">
+          <h3>疗效评估 + 复诊一体化</h3>
+          <p>系统支持医患双向疗效评估反馈机制，构建人工智能的自我学习与优化体系。通过一体化的初诊、复诊流程，医生可根据患者最新病情调整治疗方案，优化药物剂量和配伍，确保治疗的持续性和有效性。</p>
+        </div>
+        <div class="card">
+          <h3>多流派、多专家会诊</h3>
+          <p>基于混合专家模型（MoE）的并行推理能力，将多流派、多专家会诊的中医经验进行系统融合与客观量化，实现多流派诊疗逻辑的并行对比分析，为中医临床多流派研究提供可重复的数据支持，突破传统经验主观性强、难以标准化的瓶颈。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI NN -->
+    <section id="nn">
+      <div class="section-header">
+        <div class="section-label">Deep Neural Network</div>
+        <h2>中医 AI 辨证施治深度神经网络</h2>
+        <p>基于贝叶斯推理与人工神经网络，模拟临床真实辨证施治过程</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>概率推理示例</h3>
+          <p>以“感冒时风寒型的概率”为例：先验概率 P(B)=33.00%；风寒感冒时流清涕的概率（似然）P(A|B)=76.00%；感冒时流清涕的概率（证据）P(A)=52.00%；流清涕时风寒型感冒的概率（后验概率）P(B|A)=48.23%。</p>
+        </div>
+        <div class="card">
+          <h3>人工神经网络虚拟图</h3>
+          <p>以胃脘痛【徐经世专科】为例，展示正相关权重网络。注：图示尚未包含症候程度、子午归经、六经传变等多维参数，实际推理引擎会综合全部维度。</p>
+        </div>
+      </div>
+      <figure style="max-width: 900px; margin: 40px auto 0;">
+        <img src="images/page_14.webp" alt="中医辨证施治双引擎与五同五不同" loading="lazy" data-caption="中医辨证施治双引擎实现：病→证→方→药→量→制的完整推理链路。" / decoding="async" />
+        <figcaption><strong>中医专业复合推理模型</strong>中医规则图谱（符号主义）与人工神经网络（连接主义）协同，通过基础模型与专病模型，实现病→证→方→药→量→制的精准推理，并有效抑制幻觉。</figcaption>
+      </figure>
+    </section>
+
+    <!-- Architecture -->
+    <section id="architecture">
+      <div class="section-header">
+        <div class="section-label">Architecture</div>
+        <h2>辨证云应用架构全景</h2>
+        <p>多层架构设计，覆盖基础云平台、专业模型、订阅服务与智能体集群</p>
+      </div>
+      <figure style="max-width: 1000px; margin: 0 auto 40px;">
+        <img src="images/page_13.webp" alt="辨证云应用架构全景" loading="lazy" data-caption="辨证云应用架构全景：从基础云平台到 AI 辅助辨证及名老中医专科专病智能体集群的完整技术栈。" / decoding="async" />
+        <figcaption><strong>辨证云应用架构全景</strong>底层基于联通云、阿里云、腾讯云、华为云、私有云等基础云平台；上层整合大语言模型（LLMs）与辨证云中医专业模型（基础模型+专病模型）；通过 API、嵌入、MCP 等接口对外提供服务；最终面向 Chat Box、H5/小程序、APP、PC 等终端形态，构建名老中医专科专病智能体集群。</figcaption>
+      </figure>
+    </section>
+
+    <!-- Base Model -->
+    <section id="base-model">
+      <div class="section-header">
+        <div class="section-label">Base Model</div>
+        <h2>基础模型与知识图谱</h2>
+        <p>千万级中医知识图谱，亿级权重参数，支撑精准辨证施治</p>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="number">3500+</div><div class="label">证型 / 方证</div></div>
+        <div class="stat-box"><div class="number">30000+</div><div class="label">症候条目</div></div>
+        <div class="stat-box"><div class="number">3500+</div><div class="label">治法</div></div>
+        <div class="stat-box"><div class="number">5000+</div><div class="label">主方</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>知识图谱</h3>
+          <p>千万级中医知识图谱，涵盖证型、方证、主方优选、中药及穴位加减化裁、中成药等，为辨证推理提供结构化知识支撑。</p>
+        </div>
+        <div class="card">
+          <h3>权重参数</h3>
+          <p>基本权重 1.05 亿（包括症候、证型、方证）；扩展权重 6.30 亿（包括基本权重及症候程度、子午归经、六经传变等多维度参数）。</p>
+        </div>
+        <div class="card">
+          <h3>多模态症候表达</h3>
+          <p>支持文字解释、图片、视频等多模态信息，以及程度评估、子午归经、六经传变等维度，提升症候描述的完整性与客观性。</p>
+        </div>
+        <div class="card">
+          <h3>适宜疗法与临证参考</h3>
+          <p>除传统方剂外，还提供针灸指压、耳针、头针、中成药、食疗药膳、验方、养生调理治未病，以及专家经验、医理诠释、中医辨证思维链等临证参考。</p>
+        </div>
+      </div>
+      <figure style="max-width: 1000px; margin: 40px auto 0;">
+        <img src="images/page_15.webp" alt="基础模型与知识图谱" loading="lazy" data-caption="基础模型：涵盖证型/方证、症候、治法、主方、适宜疗法与临证参考的完整知识体系。" / decoding="async" />
+        <figcaption><strong>基础模型知识体系</strong>覆盖证型/方证 3500+、症候 30000+、治法 3500+、主方 5000+，结合多模态信息与知识图谱，为上层专病模型提供扎实的知识底座。</figcaption>
+      </figure>
+    </section>
+
+    <!-- Disease Model -->
+    <section id="disease-model">
+      <div class="section-header">
+        <div class="section-label">Disease Model</div>
+        <h2>专病模型</h2>
+        <p>基于混合专家模型（MoE）推理架构，低成本、快速、高效开发名老中医传承专病模型</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>结构模型</h3>
+          <ol>
+            <li>为弥补中医临床病案数据不足，通过临床专家提供的专病诊疗路径，快速构建专病模型的基本结构和属性。</li>
+            <li>也可通过一定数量的专病病案 → 大模型（DeepSeek、Qwen、星火等）归纳构建，最终形成专病诊疗方案。</li>
+            <li>Prompt Engineering → Context Engineering → Harness Engineering（提示词工程 → 上下文工程 → 驾驭工程），制定中医专病辨证施治的数智化诊疗规范，并建立训练和推理的控制体系。</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>偏好模型</h3>
+          <ol>
+            <li>引入基础模型的相关权重数值。</li>
+            <li>依据临床诊疗路径，设定主症、证型/方证、治法、主方优选、加减化裁、其他疗法等偏好数据。</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>专业模型（预训练）</h3>
+          <ol>
+            <li>中医师人工调试，人机对齐（AI Alignment）和真实病案比对。</li>
+            <li>合成数据预训练，弥补临床数据不足的问题。</li>
+            <li>经合成数据训练生成模拟病案数据，通过大语言模型（DeepSeek、Qwen、星火等）归纳总结成综述报告，给专业中医师提供模拟辨证调试依据。</li>
+            <li>通过真实临床病案与偏好模型做一致性对比测试。</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>优化模型（后训练）</h3>
+          <ol>
+            <li>对患者症候之外的其他维度（季节、地域、体质、年龄等）的真实世界临床数据进行模型权重参数自动调优，实现更精准的辨证推理。</li>
+            <li>基于真实世界的疗效评估和症候评估为数据基础的强化学习（RLHF），对主方（类方）进行优选和对中药的精准加减化裁，使系统在后训练过程中持续迭代、自我进化，以实现更佳的临床疗效。</li>
+          </ol>
+        </div>
+      </div>
+      <figure style="max-width: 1000px; margin: 40px auto 0;">
+        <img src="images/page_16.webp" alt="专病模型" loading="lazy" data-caption="专病模型：结构模型 → 偏好模型 → 专业模型（预训练）→ 优化模型（后训练）的完整训练体系。" / decoding="async" />
+        <figcaption><strong>专病模型训练体系</strong>从结构模型、偏好模型、专业模型到优化模型，形成覆盖数据准备、预训练、人工对齐与强化学习的完整闭环，支持低成本快速构建名老中医传承专病模型。</figcaption>
+      </figure>
+      <figure style="max-width: 1000px; margin: 40px auto 0;">
+        <img src="images/page_17.webp" alt="基于真实世界疗效评估的强化学习" loading="lazy" data-caption="优化模型/后训练：基于真实世界疗效评估数据，通过 RLHF 持续优化辨证推理与处方能力。" / decoding="async" />
+        <figcaption><strong>基于真实世界的疗效评估强化学习</strong>覆盖初诊程度评估、复诊疗效评估、多维度（五运六气/季节、地域、体质等）自动调优，以及主方类方优选与加减化裁，实现模型自我学习与持续进化。</figcaption>
+      </figure>
+    </section>
+
+    <!-- 名老中医智能体 -->
+    <section>
+      <div class="section-header">
+        <div class="section-label">Agent Cluster</div>
+        <h2>名老中医专科专病智能体开发</h2>
+        <p>全面整合大语言模型，实现从临床诊疗路径到辨证思维链的智能化传承</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><h3>智能咨询</h3><p>基于大语言模型提供面向医生与患者的智能问答与咨询服务。</p></div>
+        <div class="card"><h3>Deep Research</h3><p>深入研究智能体开发应用，支持专病模型开发和人机对齐调试。</p></div>
+        <div class="card"><h3>专病模型开发</h3><p>从临床诊疗路径到辨证思维链，构建可学习、可复现的名老中医数字分身。</p></div>
+      </div>
+    </section>
+
+    <!-- 伤寒论 -->
+    <section id="shanghan">
+      <div class="section-header">
+        <div class="section-label">Shang Han Lun Master</div>
+        <h2>《伤寒论》经方大师【六经辨证】</h2>
+        <p>先辨六经，再辨方证：多层神经网络解决复杂性辨证问题</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>系统整理与特征提取</h3>
+          <p>针对六经辨证复杂逻辑运算需求，辨证云对传承开发平台进行了大规模迭代升级。在“抓主证”的前提下，对《伤寒论》113 个方证以及《金匮要略》中挑选出来的 100 多个类变方进行系统整理、特征提取与逻辑归纳。</p>
+        </div>
+        <div class="card">
+          <h3>多层神经网络与对齐调试</h3>
+          <p>全面满足“先辨六经、再辨方证”的多层神经网络合成数据模拟预训练工程，中医临床专家直接参与人类反馈强化学习（RLHF）和 AI 对齐调试。</p>
+        </div>
+        <div class="card">
+          <h3>能力提升</h3>
+          <p>经方大师项目使辨证云从单一名老中医、单一病种的模拟辨证施治，提升到全系统、全病种的开发与延伸，为融合“大中医、多流派”的新中医范式奠定基础。</p>
+        </div>
+        <div class="card">
+          <h3>应用价值</h3>
+          <p>当前经方是学院派中医的普遍短板。基于 AI 技术的经方大师系统发布后，将促进中医 AI 进入各级医院、三甲中医院及中医药大学，为更多名老中医传承系统开发奠定基础。</p>
+        </div>
+      </div>
+      <figure style="max-width: 1000px; margin: 40px auto 0;">
+        <img src="images/page_19_top.webp" alt="《伤寒论》经方大师六经辨证（上）" loading="lazy" data-caption="六经辨证复杂性辨证系统：对比六经辨证与脏腑辨证在整体性、时序性、复合性、个性化等维度的差异。" / decoding="async" />
+        <img src="images/page_19_bottom.webp" alt="《伤寒论》经方大师六经辨证（下）" loading="lazy" data-caption="辨证堂小程序体验码与六经辨证手机端界面展示。" style="margin-top: 24px;" / decoding="async" />
+        <figcaption><strong>六经辨证复杂性辨证思维</strong>左侧为六经辨证（经方）：外感+内伤（三阴三阳）、六经传变时间维度、合病并病两感、原方+类方+加减化裁、体质相关（酒客/汗家/淋家/亡血家）、成长方向为上医（大医）；右侧为脏腑辨证（时方）：内伤疾病（脏腑八纲）、五行相关、证型相合、主方+加减化裁、九种常见体质辨识、成长方向为中医（普通医生）。</figcaption>
+      </figure>
+      <figure style="max-width: 1000px; margin: 40px auto 0;">
+        <img src="images/page_20.webp" alt="开发六经辨证 AI 系统的要点" loading="lazy" data-caption="六经辨证 AI 系统三大创新：双辨证体系、六经传变时间维度、疗效反馈机制。" / decoding="async" />
+        <figcaption><strong>六经辨证 AI 系统的三大创新</strong>双辨证体系：先辨六经，继辨方证；六经传变时间维度：增加症候程度、子午归经（发作时间）、六经传变（持续时日）维度，实现“初诊→复诊”一体化诊疗体系；疗效反馈机制：通过医患双向评估，建立人工智能系统的自我学习和优化机制。</figcaption>
+      </figure>
+    </section>
+
+    <!-- Demo 2 -->
+    <section id="demo2">
+      <div class="section-header">
+        <div class="section-label">System Demo II</div>
+        <h2>系统展示（二）</h2>
+        <p>六经辨证演示与辨证堂小程序体验</p>
+      </div>
+      <div class="grid-2">
+        <figure>
+          <img src="images/page_20.webp" alt="六经辨证的多层神经网络" loading="lazy" data-caption="六经辨证演示：展示六经辨证的多层神经网络推理过程。" / decoding="async" />
+          <figcaption><strong>六经辨证的多层神经网络</strong>展示六经辨证的多层神经网络推理过程，直观呈现从症状输入到六经判断、方证推荐、中药配方的完整链路。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_41.webp" alt="辨证堂小程序体验码" loading="lazy" data-caption="辨证堂小程序：患者端与医生端均可扫码体验的轻量化入口。" / decoding="async" />
+          <figcaption><strong>辨证堂小程序体验码</strong>用户可通过微信扫码进入辨证堂小程序，完成注册、患者信息维护、AI 问诊、处方查看与支付等流程。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Cases -->
+    <section id="cases">
+      <div class="section-header">
+        <div class="section-label">Success Cases</div>
+        <h2>成功案例</h2>
+        <p>从抗疫一线到基层医疗，从三甲医院到连锁药店，辨证云已在多场景落地验证</p>
+      </div>
+
+      <div class="card" style="max-width: 1100px; margin: 0 auto 32px;">
+        <h3>案例：辨证云中医 AI 助力香港抗疫</h3>
+        <p>2022 年 2 月香港奥密克戎新冠疫情爆发，辨证云应邀为香港中医药临床研究中心及香港中医药龙头机构浸会大学开发部署了新冠中医 AI 诊疗与防控系统，助力香港医疗诊所与方舱医院开展新冠中医诊疗服务。</p>
+        <ul class="feature-list">
+          <li>在香港诊所门诊、住院和启德方舱医院部署使用，赋能香港医生开展新冠中医诊疗服务，获得显著效果。</li>
+          <li>时任香港特首林郑月娥女士到现场视察，对这项独具创新的中医 AI 辨证系统给予了高度评价。</li>
+          <li>与香港浸会大学中医专家组合作，在一周时间内完成开发、上线和运行。</li>
+          <li>诊疗处方涵盖轻型、中型、普通型、高龄、危重型、体虚型加减方，儿童处方加减方，无症状感染、预防、康复、回访方案；包括 20 多种证型、30 多个主方和加减方、近百种颗粒剂中药和中成药。</li>
+          <li>联接医生端的患者自我管理系统，可开展居家线上咨询、自我监测评估、选择适宜中医治疗、康复和预防方案。</li>
+          <li>2022 年 4 月 3 日，香港浸会大学副校长卞兆祥教授向中央援港抗疫中医专家组组长仝小林院士等专家介绍新冠中医 AI 诊疗与防控系统部署应用成果。</li>
+          <li>系统提供精准数据分析和决策支持，对新冠临床医疗、全过程医疗大数据建立、临床研究，特别是针对全球 6 亿新冠感染者后遗症的研究及康复治疗具有重大意义。</li>
+        </ul>
+      </div>
+      <figure style="max-width: 900px; margin: 0 auto;">
+        <img src="images/page_21.webp" alt="香港抗疫" loading="lazy" data-caption="辨证云中医 AI 诊疗与防控系统在香港诊所门诊、住院和启德方舱医院部署应用，时任香港特首林郑月娥女士到场视察。" / decoding="async" />
+        <figcaption><strong>香港抗疫部署</strong>辨证云中医 AI 诊疗与防控系统在香港诊所门诊、住院和启德方舱医院部署应用，时任香港特首林郑月娥女士到场视察并给予高度评价。</figcaption>
+      </figure>
+
+      <div class="card" style="max-width: 1100px; margin: 60px auto 32px;">
+        <h3>案例：借助讯飞“智医助理”平台，助力全国基层医疗</h3>
+        <p>辨证云与科大讯飞合作，2023 年在安徽省亳州、滁州、宣城三个地级市的 330 余家乡镇卫生院落地应用；2024 年开始在全国 800 多个县域医联体的讯飞智医助理平台上推广应用，赋能基层中医药服务，推动人工智能时代的中医药深度发展。</p>
+        <p>2022 年 11 月，辨证云与科大讯飞合作，为乡镇卫生院提供先进的智医助理平台，整合辨证云中医 AI 辨证能力，已在省内亳州、滁州、宣城等地陆续上线，并在安徽省全面推广。新的中医 AI 辨证平台为乡镇卫生院的中医师解决了基层中医诊疗能力不足的问题，得到了省市级卫健委和卫生院的充分肯定；结合与当地 HIS 系统的联动，提供了全套完整的诊疗体验。</p>
+      </div>
+      <figure style="max-width: 900px; margin: 0 auto 60px;">
+        <img src="images/page_22.webp" alt="借助讯飞智医助理平台助力基层医疗" loading="lazy" data-caption="借助讯飞“智医助理”平台，辨证云在安徽亳州、滁州、宣城 330 余家乡镇卫生院落地应用，并向全国 800 多个县域医联体推广。" / decoding="async" />
+        <figcaption><strong>讯飞智医助理平台合作</strong>辨证云与科大讯飞合作，2023 年在安徽亳州、滁州、宣城 330 余家乡镇卫生院落地应用，2024 年开始在全国 800 多个县域医联体推广，赋能基层中医药服务。</figcaption>
+      </figure>
+
+      <div class="card" style="max-width: 1100px; margin: 0 auto 32px;">
+        <h3>案例：北京同仁堂连锁药店及医馆</h3>
+        <p>自 2004 年起，北京同仁堂与辨证云展开合作，先后在四通桥店、新街口店、安德路店、火器营店等多家药店和诊所引入辨证云中医 AI 平台。自平台投入使用以来，凭借其专业、精准的中医智能辨证能力，赢得了店员、顾客、医生及患者的一致好评与广泛认可。</p>
+      </div>
+      <figure style="max-width: 900px; margin: 0 auto;">
+        <img src="images/page_23.webp" alt="北京同仁堂连锁药店及中医医院" loading="lazy" data-caption="北京同仁堂连锁药店、医馆及中医医院引入辨证云中医 AI 平台，广泛应用于药店、院内辅诊、远程会诊及互联网医院场景。" / decoding="async" />
+        <figcaption><strong>北京同仁堂合作</strong>自 2004 年起，同仁堂连锁药店及医馆引入辨证云中医 AI 平台；2025 年北京同仁堂中医医院在院内辅诊、远程会诊及互联网医院场景中应用辨证云，获得医患广泛认可。</figcaption>
+      </figure>
+
+      <div class="card" style="max-width: 1100px; margin: 60px auto 32px;">
+        <h3>案例：潍坊市益都中心医院</h3>
+        <p>潍坊市益都中心医院前身是 1882 年英国基督教浸礼会传教士创立施医所基础上组建的广德医院。现为三级甲等综合医院、国家住院医师规范化培训基地、国家疼痛综合管理试点医院、国家级标准版胸痛中心、国家高级卒中中心建设单位、国家药物临床试验机构等。</p>
+        <p>2025 年，医院全面启用辨证云中医 AI 辅诊平台。平台在中医科医生、中医医生及西学中医生中得到广泛应用，显著提升了中医问诊的效率与诊疗水平，获得了医患双方的一致好评。潍坊市作为国家第二批中医药传承创新试点城市，已与辨证云达成合作意向，计划共同开展中医 AI 数字分身的研发工作。</p>
+      </div>
+      <figure style="max-width: 900px; margin: 0 auto 60px;">
+        <img src="images/page_24.webp" alt="潍坊市益都中心医院" loading="lazy" data-caption="潍坊市益都中心医院全面启用辨证云中医 AI 辅诊平台。" / decoding="async" />
+        <figcaption><strong>潍坊市益都中心医院</strong>2025 年全面启用辨证云中医 AI 辅诊平台，提升中医问诊效率与诊疗水平，并计划开展中医 AI 数字分身研发。</figcaption>
+      </figure>
+
+      <div class="card" style="max-width: 1100px; margin: 0 auto 32px;">
+        <h3>案例：浙江省中医院</h3>
+        <p>浙江省中医院是全国知名的三级甲等中医医院，在中医临床、科研和人才培养方面具有深厚积淀；浙江省名中医研究院依托浙江省中医院设立，汇聚多位国家级、省级名中医，承担名医经验整理、学术研究与人才培养等重要任务。</p>
+        <p>浙江省中医院引入辨证云中医 AI 系统作为临床辅助工具，为中医医生提供智能辨证支持。系统基于中医经典理论和大量临床数据，对症状信息进行结构化分析，辅助医生进行证候判断和思路梳理，提供安全、有效的中医辨证治疗方案，大幅提升医生的辨证能力、规范性与效率，尤其在青年医生培养和复杂病例分析中发挥积极作用。</p>
+        <p>同时，辨证云与浙江省名中医研究院开展深度合作，围绕名中医临床经验的数字化与智能化传承，通过系统化采集、整理和建模名中医的诊疗思路与辨证经验，基于辨证云零代码开发平台的基础模型和专病模型，训练中医 AI 数字分身智能体，实现可学习、可复现的智能传承成果。</p>
+        <p>在系统落地方面，由于 HIS 厂商卫宁之前合作的中医 AI 辅诊能力不足，无法满足院方需求，辨证云中医 AI 系统通过嵌入式接口与医院现有信息系统无缝对接，并与 HIS 厂商卫宁健康开展合作，实现与医院 HIS 系统的深度集成，确保临床使用流程自然顺畅，不增加医生额外负担，为中医智能辅助在大型医院的应用提供了成熟示范。</p>
+      </div>
+      <figure style="max-width: 900px; margin: 0 auto;">
+        <img src="images/page_25.webp" alt="浙江省中医院" loading="lazy" data-caption="浙江省中医院引入辨证云中医 AI 系统，并与浙江省名中医研究院合作开展名中医数字分身研发；辨证云通过嵌入式接口与医院 HIS 系统深度集成。" / decoding="async" />
+        <figcaption><strong>浙江省中医院</strong>引入辨证云中医 AI 系统作为临床辅助工具，提升辨证能力、规范性与效率；与浙江省名中医研究院合作开展名中医数字分身研发；通过嵌入式接口与卫宁健康 HIS 系统深度集成，为大型医院中医智能辅助应用提供成熟示范。</figcaption>
+      </figure>
+
+      <div class="card" style="max-width: 1100px; margin: 60px auto 32px;">
+        <h3>案例：宁夏固原市中医院</h3>
+        <p>2024 年 4 月，宁夏回族自治区固原市中医院使用辨证云中医 AI 智能辅诊系统后，进一步提升了医疗服务水平和患者满意度，得到中医专家的一致高度好评。</p>
+        <p>系统开创性地基于六经辨证理论进行问诊，通过 AI 技术对患者病症进行全面分析，提供精准辨证治疗方案。固原市中医院的医务人员表示，系统引入为临床工作带来极大便利；一位内科主任提到：“以前需要花费大量时间在患者诊断和辨证上，现在可以更专注于治疗和康复，效率提高了很多，患者满意度也大幅提升。”</p>
+        <p>患者反馈同样积极。一位糖尿病患者感慨道：“自从用了这个系统，医生的诊断更加准确，药方也更对症了，各种症状均控制得比以前好多了。”</p>
+        <p>宁夏回族自治区固原市西吉县吉强卫生院的中医师刘嫣楠和邓娜，自 2022 年毕业入职以来，在基层医疗工作中获得中医 AI 辅助诊疗系统的有力支持。该系统通过智能辨证、经典方剂推荐和电子病历管理等模块，有效提升了青年医师的诊疗效率。</p>
+      </div>
+      <figure style="max-width: 900px; margin: 0 auto 60px;">
+        <img src="images/page_26.webp" alt="宁夏固原市中医院" loading="lazy" data-caption="宁夏固原市中医院使用辨证云中医 AI 智能辅诊系统，提升三级医院中医诊疗水平。" / decoding="async" />
+        <figcaption><strong>宁夏固原市中医院</strong>2024 年 4 月部署辨证云中医 AI 智能辅诊系统，开创性应用六经辨证理论问诊，显著提升诊疗效率与患者满意度。</figcaption>
+      </figure>
+
+      <div class="card" style="max-width: 1100px; margin: 0 auto 32px;">
+        <h3>案例：人工智能赋能村医的“旌德模式”</h3>
+        <p>安徽省旌德县借力辨证云中医 AI 的基层医疗健康服务融合创新模式。旌德县地处皖南山区，素有“中国灵芝之乡”“中国宣砚之乡”“国际慢城”等称号，全县面积 904.8 平方公里，人口 15.2 万，辖 10 个镇、68 个村（社区）。</p>
+        <p>作为安徽省人口最少的山区县之一，就医看病成为当地困扰。宣城市委原常委、旌德县委原书记周密指出：与过去“缺医少药”相比，现在农村关键不是“缺药”而是“少医”。</p>
+        <p>2017 年 9 月，旌德县在全国率先启动全科医生助手机器人试点项目，决心通过人工智能赋能基层医疗，实现智能分级诊疗。旌德县以建立“医共体+医联体+健康网”为框架，运用“互联网+人工智能”为手段，以“健康扶贫+智慧医疗”为新路径，先后在全县 8 个贫困村、17 个非贫困村、1 个社区卫生服务中心，以及所有镇卫生院和县级医院共投放 40 台助手机器人进行试点。在试点运行一年基础上，计划在未进行试点的 34 个村卫生室和县级医疗卫生机构再投放 40 台，实现全县医疗机构全覆盖。</p>
+        <p>智能机器人提供的中、西医诊疗功能，可有效辅助村医对常见病、多发病患者进行更加精准的诊断与治疗。学西医出身的村医江繁荣说：“以前我不太懂中医，不会开方子，现在有了机器人的辅助，还有县里组织的知识培训，我也能为一些慢病患者提供中医诊疗服务了。敢开中药方子，底气主要来自两个方面：一是助手机器人的中医专家诊疗系统汇集了国家级名老中医临床经验，经过 200 多位国医大师的验证，开出的方子科学可靠；二是可以随时与县医院中医科医生杨后长视频连线，在其实时指导下开展中医诊疗。”</p>
+        <p>在世界银行/泛美开发银行年度政策对话（Regional Policy Dialogue）上，专门介绍全科医生助手机器人与“旌德模式”；《柳叶刀》中国基层医疗专题报告（Lancet Commission Report）也将“旌德模式”作为创新案例纳入其中。2018 年 5 月，《瞭望》刊登《贫困村迎来“智慧医疗”》专题报道；同年 12 月 16 日，国务院深化医疗卫生体制改革领导小组简报重点提到旌德县借力人工智能的基层医疗健康服务融合新模式。国务院发展研究中心宏观经济研究部副研究员江宇评价指出，旌德县“健康扶贫+智慧医疗”改革是我国深化医改的突出案例。</p>
+        <p>著名经济学家厉以宁教授和夫人到旌德县视察时，时任旌德县挂职副县长、安徽省卫健委中医发展处处长吴振宇使用辨证云中医 AI 辅诊系统为厉老夫人现场辨证施治；国医大师徐经世莅临指导，对中医 AI 辅诊能力给出了高度评价；世界银行/世界卫生组织贷款中国医改促进项目专家督导团也对旌德县人工智能试点项目进行了考察。</p>
+      </div>
+      <figure style="max-width: 900px; margin: 0 auto;">
+        <img src="images/page_27.webp" alt="人工智能赋能村医的旌德模式" loading="lazy" data-caption="安徽省旌德县借力辨证云中医 AI 的基层医疗健康服务融合创新模式，获得国内外广泛关注与认可。" / decoding="async" />
+        <figcaption><strong>旌德模式</strong>安徽省旌德县以“医共体+医联体+健康网”为框架，运用“互联网+人工智能”手段，探索“健康扶贫+智慧医疗”新路径，受到世界银行、世界卫生组织、《柳叶刀》、《瞭望》、国务院医改领导小组简报等广泛关注与认可。</figcaption>
+      </figure>
+    </section>
+
+    <!-- Heritage Platform -->
+    <section id="heritage">
+      <div class="section-header">
+        <div class="section-label">Zero-Code Heritage Platform</div>
+        <h2>中医数智传承零代码开发平台</h2>
+        <p>无代码操作即可开发中医专科辨证施治服务模块，高效建立中医专科 AI 云服务平台</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>零代码模块开发</h3>
+          <p>中医数智传承零代码开发平台可进行无代码操作开发中医专科（名医名家、地方特色中医）辨证施治服务模块，高效建立中医专科 AI 云服务平台，打造特色中医 AI 云传承工作室。</p>
+        </div>
+        <div class="card">
+          <h3>人机对齐调试（AI Alignment）</h3>
+          <p>可以实现对症候、证型、中药配方的精细式测试，确保模型输出与临床专家经验高度一致。</p>
+        </div>
+        <div class="card">
+          <h3>合成数据训练（Synthetic Data Training）</h3>
+          <p>可通过人工设置对非典型证候进行随机遍历，生成以“主证优先”的偏好数据训练集，在较低算力要求下实现人类监督下的强化学习（RLHF）。</p>
+        </div>
+        <div class="card">
+          <h3>快速构建个人/机构专病系统</h3>
+          <p>使用先进的辨证云中医 AI 零代码开发平台，快速开发出属于用户自己的中医辨证智能系统。</p>
+        </div>
+      </div>
+      <div class="grid-2" style="max-width: 1000px; margin: 40px auto 0;">
+        <figure>
+          <img src="images/page_28.webp" alt="中医数智传承零代码开发平台" loading="lazy" data-caption="中医数智传承零代码开发平台：可进行无代码操作开发中医专科辨证施治服务模块，打造特色中医 AI 云传承工作室。" / decoding="async" />
+          <figcaption><strong>零代码开发平台</strong>可进行无代码操作开发中医专科（名医名家、地方特色中医）辨证施治服务模块，高效建立中医专科 AI 云服务平台。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_34.webp" alt="系统展示（三）" loading="lazy" data-caption="系统展示（三）：辨证云中医传承开发平台支持零代码模块开发，可快速开发出用户自己的中医专病辨证施治 AI 系统。" / decoding="async" />
+          <figcaption><strong>系统展示（三）</strong>辨证云中医传承开发平台支持零代码模块开发，可快速开发出用户自己的中医专病辨证施治 AI 系统。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_35.webp" alt="人机对齐调试" loading="lazy" data-caption="人机对齐调试（AI Alignment）：实现对症候、证型、中药配方的精细式测试。" / decoding="async" />
+          <figcaption><strong>人机对齐调试</strong>实现对症候、证型、中药配方的精细式测试，确保模型输出与临床专家经验高度一致。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_36.webp" alt="合成数据训练" loading="lazy" data-caption="合成数据训练（Synthetic Data Training）：通过随机遍历非典型证候生成偏好数据训练集，实现人类监督下的强化学习（RLHF）。" / decoding="async" />
+          <figcaption><strong>合成数据训练</strong>通过随机遍历非典型证候生成偏好数据训练集，在较低算力要求下实现人类监督下的强化学习（RLHF）。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_37.webp" alt="中医AI辨证传承开发平台操作界面" loading="lazy" data-caption="中医 AI 辨证传承开发平台操作界面：支持症候、证型、方药关系的可视化编辑与管理。" / decoding="async" />
+          <figcaption><strong>操作界面截图</strong>提供症候、证型、方药关系的可视化编辑与管理，支持知识图谱与诊疗路径的快速构建。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 徐经世 -->
+    <section>
+      <div class="section-header">
+        <div class="section-label">Digital Inheritance</div>
+        <h2>智能体传承国医大师徐经世临床诊疗精华</h2>
+        <p>AI 驱动的名医数智传承，将国医大师经验数字化、智能化、规模化传承</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>徐经世：中医的践行者与传承者</h3>
+          <p>徐经世国医大师是当代中医领域的领军人物，创立“杂病因郁，治以安中”“肝胆郁热，脾胃虚寒”等病机理论；提出“治肝三十二字法”“治脾胃三原则四要素”“扶正祛邪治肿瘤”“妇科诸病从肝论治”等新方法新理论；组织参与“肝豆汤”研发，开创中西医结合治疗肝豆状核变性先河；研制“扶正安中汤”“消化复宁汤”“迪喘舒丸”等专方。</p>
+        </div>
+        <div class="card">
+          <h3>辨证云：中医传承的新引擎</h3>
+          <p>辨证云平台利用云计算、大数据和人工智能技术，将中医药知识体系与临床经验数字化、智能化，实现资源共享与传承。平台的核心优势在于强大的数据处理和分析能力，能够提供智能诊断、个性化治疗方案及药物推荐，为中医药研究和教育提供坚实数据支持。</p>
+        </div>
+      </div>
+      <div class="card" style="max-width: 1100px; margin: 32px auto 0;">
+        <h3>完美结合：经典理论与临床经验</h3>
+        <p>在徐老指导下，辨证云平台融入大量经典中医理论，并结合徐老丰富临床经验与独特诊疗思路，将【胃脘痛】、【外感热病】、【内伤热病】和【1、2 型糖尿病】等病症的多年宝贵临床经验灌输到平台中，使平台在继承传统中医精髓的同时具备更强实用性和前瞻性。</p>
+      </div>
+      <figure style="max-width: 900px; margin: 40px auto 0;">
+        <img src="images/page_29.webp" alt="国医大师徐经世与辨证云平台" loading="lazy" data-caption="国医大师徐经世临床诊疗经验通过辨证云平台实现数字化与智能化传承。" / decoding="async" />
+        <figcaption><strong>徐经世国医大师智能体传承</strong>将徐经世国医大师的胃脘痛、外感热病、内伤热病、糖尿病等专病经验数字化，形成可学习、可复现的 AI 数字分身。</figcaption>
+      </figure>
+    </section>
+
+    <!-- 朱良春 -->
+    <section>
+      <div class="section-header">
+        <div class="section-label">Digital Inheritance</div>
+        <h2>智能体传承国医大师朱良春临证精髓</h2>
+        <p>中医界第一个 AI 驱动的“名医数智传承工作室”，精准复刻与规模化传承名医经验</p>
+      </div>
+      <div class="card" style="max-width: 1100px; margin: 0 auto 32px;">
+        <p>国医大师朱良春数智传承工作室是中医界第一个 AI 驱动的“名医数智传承工作室”，解决了名老中医传承的关键痛点——AI 精准复刻和规模化传承了名医大家的精湛医术和诊疗经验。以辨证云平台人工神经网络为核心技术开发的朱良春国医大师系列优势病种和名医数智传承工作室，实现了数智化时代的社会效益和经济效益并举，打造出中医行业守正创新高质量发展的新模式。该项目是国家卫健委科研所人工智能重点实验室全方位支持的研究课题之一。</p>
+        <p>朱良春（1917-2015），首届国医大师，当代著名中医药学家，深耕中医领域 80 余年，丰富了中医望诊诊法，首倡辨证与辨病结合，致力于临床疑难杂病研究，如强直性脊柱炎、淋巴瘤等，善于使用各种虫类药，临床疗效显著。</p>
+      </div>
+      <div class="grid-2" style="max-width: 1100px;">
+        <div class="card">
+          <h3>合作服务内容</h3>
+          <ol>
+            <li>朱良春学术传承人与中医辨证云合作，AI 精准复刻国医大师朱良春的专科智能体。</li>
+            <li>朱婉华教授团队对数智传承工作室医生提出的临床问题提供 24 小时内答疑回复。</li>
+            <li>每季度提供一次线下临床带教、现场坐诊及培训。</li>
+            <li>提供疑难杂症远程会诊。</li>
+            <li>合作医院可优选主治以上中医师前往南通良春中医医院进修不少于 3 个月，考核合格可获拜师资格；副主任以上医师可拜朱婉华教授为师，带教时间 3 年，每年不少于 30 个半天门诊。</li>
+            <li>围绕“益肾蠲痹法治疗风湿病”“扶正消癥法治疗肿瘤”等独特诊疗方法及医院制剂开展合作。</li>
+            <li>每年召开学术年会，基于数智传承平台积累的海量数据和 AI 自动复诊、疗效评估数据共同发表学术论文。</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>落地推广</h3>
+          <p>目前国医大师朱良春数智传承工作室已在宁夏自治区中医医院正式启用，受到专科医师和患者的普遍欢迎，并正在向全国其他省市的等级中医院推广应用；北京同仁堂医馆和其他省市的中医院合作也在逐步实施中。</p>
+        </div>
+      </div>
+      <figure style="max-width: 900px; margin: 40px auto 0;">
+        <img src="images/page_30.webp" alt="国医大师朱良春数智传承工作室" loading="lazy" data-caption="国医大师朱良春数智传承工作室在宁夏自治区中医医院正式启用。" / decoding="async" />
+        <figcaption><strong>朱良春数智传承工作室</strong>中医界首个 AI 驱动的名医数智传承工作室，已在宁夏自治区中医医院正式启用，并面向全国等级中医院推广。</figcaption>
+      </figure>
+    </section>
+
+    <!-- 其他数字分身 -->
+    <section>
+      <div class="section-header">
+        <div class="section-label">More Digital Avatars</div>
+        <h2>更多中医 AI 传承数字分身项目</h2>
+        <p>跨科室、跨医院、跨区域，构建可数字化传承、智能化应用的中医数字分身体系</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>上海市光华中西医结合医院</h3>
+          <h4>类风湿性关节炎中医 AI 传承数字分身</h4>
+          <p>辨证云携手广西医科大学，共同推进上海市光华中西医结合医院“类风湿性关节炎”中医 AI 传承数字分身的研发与建设。项目将资深中西医结合诊治类风湿性关节炎的临床经验与思维模式，通过人工智能与数字技术进行系统化整合与复刻，构建可深度学习、动态优化的数字化传承体系，探索中西医结合在慢病管理中的创新模式。</p>
+        </div>
+        <div class="card">
+          <h3>山西省儿童医院</h3>
+          <h4>中医 AI 传承数字分身</h4>
+          <p>辨证云携手中国联通北京电信规划设计院有限公司共同推进，依托山西儿童医院中医科在特定优势病种方面的诊疗经验，构建可数字化传承、智能化应用的“中医 AI 数字分身”系统。项目实现名老中医学术经验与诊疗模式的数字化传承与推广，开创以区域标杆医院为核心、向医联体及医共体辐射推广的可持续商业模式。</p>
+        </div>
+        <div class="card">
+          <h3>孔医堂与辨证云传承开发平台</h3>
+          <h4>京城四大名医孔伯华医学遗产数字化</h4>
+          <p>孔伯华先生作为京城四大名医之一，强调中医应照顾病人整体，特别强调“元气”。孔令谦先生作为后人，与辨证云平台合作，将祖辈医学经验和自己临床心得进行数字化、系统化整理，共同开发了【孔门医学】的胃脘痛、流行性腮腺炎、失眠、冠心病、风湿性关节炎、缠腰火丹、无名高热等数十种病症。</p>
+        </div>
+      </div>
+      <div class="grid-3" style="max-width: 1100px; margin: 40px auto 0;">
+        <figure>
+          <img src="images/page_31.webp" alt="上海市光华中西医结合医院" loading="lazy" data-caption="上海市光华中西医结合医院：类风湿性关节炎中医 AI 传承数字分身项目。" / decoding="async" />
+          <figcaption><strong>上海市光华中西医结合医院</strong>类风湿性关节炎中医 AI 传承数字分身项目。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_32.webp" alt="山西省儿童医院" loading="lazy" data-caption="山西省儿童医院：中医 AI 传承数字分身项目，开创区域标杆医院向医联体及医共体辐射推广的可持续商业模式。" / decoding="async" />
+          <figcaption><strong>山西省儿童医院</strong>中医 AI 传承数字分身项目，开创区域标杆医院向医联体及医共体辐射推广的可持续商业模式。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_33.webp" alt="孔医堂与辨证云合作" loading="lazy" data-caption="孔医堂与辨证云传承开发平台合作，将孔伯华医学遗产数字化、系统化。" / decoding="async" />
+          <figcaption><strong>孔医堂合作</strong>将孔伯华医学遗产与【孔门医学】数十种病症进行数字化、系统化整理与传承。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Scenarios -->
+    <section id="scenarios">
+      <div class="section-header">
+        <div class="section-label">Application Scenarios</div>
+        <h2>系统平台场景：建立线上线下服务闭环</h2>
+        <p>中医 AI 互联网医疗 + 腾讯生态，打造全流程医患连接与健康管理</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3>中医 AI + 互联网医疗</h3>
+          <p><strong>患者就医与医生建立连接 → 医生通过平台辅助辨证、开方 → 平台进行订单审核下传 → 药品调剂中心审核、调配、代煎、配送 → 患者收药、治疗、随访、远程复诊。</strong>形成从问诊到康复的完整闭环。</p>
+        </div>
+        <div class="card">
+          <h3>中医 AI + 腾讯生态</h3>
+          <p>依托微信、企业微信、服务号、小程序、微信支付、腾讯云等腾讯生态能力，构建私域医疗，助力基层医疗和综合医院；利用腾讯生态实现电商、药店结合，为患者提供线上线下全流程服务。</p>
+        </div>
+        <div class="card">
+          <h3>医患链接应用场景</h3>
+          <p>通过“公告”功能实现企业内部对文档、图片、通知等的分权限、分组别、分范围分享；结合客户标签和群发功能实现对外部患者的分组推送，针对不同标签组患者进行个性化推送和管理；支持直播健康讲座。</p>
+        </div>
+        <div class="card">
+          <h3>问诊开方场景</h3>
+          <p>用户注册并添加患者信息及家庭组子账户 → 通过微信扫码完成“分诊”（待诊状态）→ 通过中医 AI 问诊开具处方 → 患者通过微信查看订单并支付 → 系统管理员在后台查看订单、配药发货 → 通过慧商佳操作台实现远程疗效评估和复诊。</p>
+        </div>
+      </div>
+      <div class="grid-3" style="max-width: 1100px; margin: 40px auto 0;">
+        <figure>
+          <img src="images/page_38.webp" alt="线上线下服务闭环" loading="lazy" data-caption="系统平台场景：中医 AI + 互联网医疗与腾讯生态，建立线上线下服务闭环。" / decoding="async" />
+          <figcaption><strong>线上线下服务闭环</strong>中医 AI + 互联网医疗与腾讯生态，覆盖患者就医、医生辨证开方、订单审核、药品调剂配送到随访复诊的全流程。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_39.webp" alt="医患链接应用场景" loading="lazy" data-caption="医患链接应用场景：通过公告、客户标签、群发与直播健康讲座实现分组推送和个性化管理。" / decoding="async" />
+          <figcaption><strong>医患链接应用场景</strong>通过“公告”功能实现企业内部文档/图片/通知的分权限分享；结合客户标签与群发实现对外部患者的分组推送；支持直播健康讲座。</figcaption>
+        </figure>
+        <figure>
+          <img src="images/page_40.webp" alt="问诊开方场景功能截图" loading="lazy" data-caption="问诊开方场景功能截图：覆盖分诊、注册、AI 问诊、支付、配药发货、远程疗效评估与复诊的完整流程。" / decoding="async" />
+          <figcaption><strong>问诊开方场景</strong>覆盖分诊扫码、患者注册、中医 AI 问诊开方、微信查看订单并支付、后台配药发货、远程疗效评估与复诊的完整闭环。</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);">
+      <div class="section-header">
+        <div class="section-label">Experience Now</div>
+        <h2>请您体验</h2>
+        <p>多种入口，欢迎了解与试用辨证云中医 AI 数智平台</p>
+      </div>
+      <div class="grid-3" style="max-width: 1000px;">
+        <div class="card" style="text-align: center;">
+          <h3>辨证云官网</h3>
+          <p>c.zydsoft.cn</p>
+          <p style="font-size: 14px; color: var(--c-text-3);">辨证云医生端 PC 版入口</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <h3>中医 AI 零代码开发平台</h3>
+          <p>快速开发您自己的中医辨证智能系统</p>
+          <p style="font-size: 14px; color: var(--c-text-3);">面向机构与开发者</p>
+        </div>
+        <div class="card" style="text-align: center;">
+          <h3>辨证堂</h3>
+          <p>小程序 / 公众号 / H5</p>
+          <p style="font-size: 14px; color: var(--c-text-3);">患者端与医生版手机端</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>感谢关注辨证云</h3>
+    <p>中医 AI 数智平台 · 传承经典 · 守正创新</p>
+    <div class="channels">
+      <span class="channel">辨证云官网 c.zydsoft.cn</span>
+      <span class="channel">辨证堂小程序</span>
+      <span class="channel">开放接口文档</span>
+      <span class="channel">Powered by zydsoft</span>
+    </div>
+    <p style="font-size: 13px; opacity: 0.6;">本页面基于原始资料重新编排，保留全部原始关键信息。</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <span class="close">&times;</span>
+    <div class="lightbox-img-wrap">
+      <img src="" alt="" / decoding="async" />
+      <a class="lightbox-video-link" href="https://acuherb-cloud-video.oss-cn-beijing.aliyuncs.com/demo/%E8%83%83%E8%84%98%E7%97%9B%E3%80%90%E5%BE%90%E7%BB%8F%E4%B8%96%E4%B8%93%E7%A7%91%E3%80%911080p.mp4" target="_blank" rel="noopener noreferrer" aria-label="观看演示视频">
+        <span class="video-link-hint">▶ 观看演示视频</span>
+      </a>
+      <a class="lightbox-video-link page-19-top-video-link" href="https://acuherb-cloud-video.oss-cn-beijing.aliyuncs.com/demo/%E7%BB%8F%E6%96%B9%E5%A4%A7%E5%B8%88%E5%85%AD%E7%BB%8F%E8%BE%A8%E8%AF%81%E6%BC%94%E7%A4%BA2024-11-16.mp4" target="_blank" rel="noopener noreferrer" aria-label="演示视频">
+        <span class="video-link-hint">▶ 演示视频</span>
+      </a>
+    </div>
+    <div class="caption"></div>
+  </div>
+
+  <button id="back-top" aria-label="回到顶部">↑</button>
+
+  <script>
+    // Tech particle network background
+    (function() {
+      const canvas = document.getElementById('particles-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let width, height;
+      const isMobile = window.matchMedia('(pointer: coarse)').matches;
+      const particleCount = isMobile ? 30 : 55;
+      const connectionDistance = 140;
+      const maxConnections = 3;
+
+      function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+
+      function createParticles() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+          particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            radius: Math.random() * 1.5 + 1,
+            alpha: Math.random() * 0.35 + 0.25
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(13, 148, 136, ${p.alpha})`;
+          ctx.fill();
+          let connections = 0;
+          for (let j = i + 1; j < particles.length && connections < maxConnections; j++) {
+            const q = particles[j];
+            const dx = p.x - q.x;
+            const dy = p.y - q.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < connectionDistance) {
+              connections++;
+              const opacity = (1 - dist / connectionDistance) * 0.18;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = `rgba(13, 148, 136, ${opacity})`;
+              ctx.lineWidth = 0.8;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      resize();
+      createParticles();
+      draw();
+      window.addEventListener('resize', () => { resize(); createParticles(); });
+    })();
+
+    // Section tech corner decorations
+    (function() {
+      document.querySelectorAll('section:not(.hero)').forEach(sec => {
+        const tl = document.createElement('div');
+        tl.className = 'section-corner top-left';
+        tl.innerHTML = '<div class="corner-inner"></div>';
+        const br = document.createElement('div');
+        br.className = 'section-corner bottom-right';
+        br.innerHTML = '<div class="corner-inner"></div>';
+        sec.appendChild(tl);
+        sec.appendChild(br);
+      });
+    })();
+
+    // Sidebar navigation active state
+    const sections = document.querySelectorAll('section[id], footer');
+    const navLinks = document.querySelectorAll('#nav-sidebar a');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    // Mobile nav toggle
+    const nav = document.getElementById('nav-sidebar');
+    const toggle = document.getElementById('nav-toggle');
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+    navLinks.forEach(link => link.addEventListener('click', () => nav.classList.remove('open')));
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImgWrap = lightbox.querySelector('.lightbox-img-wrap');
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('.caption');
+    const lightboxVideoLink = lightbox.querySelector('.lightbox-video-link');
+    const page19TopVideoLink = lightbox.querySelector('.page-19-top-video-link');
+    const closeBtn = lightbox.querySelector('.close');
+    const videoLinkSrc = 'images/page_03.webp';
+    const videoUrl = 'https://acuherb-cloud-video.oss-cn-beijing.aliyuncs.com/demo/%E8%83%83%E8%84%98%E7%97%9B%E3%80%90%E5%BE%90%E7%BB%8F%E4%B8%96%E4%B8%93%E7%A7%91%E3%80%911080p.mp4';
+    const page19TopVideoLinkSrc = 'images/page_19_top.webp';
+    const page19TopVideoUrl = 'https://acuherb-cloud-video.oss-cn-beijing.aliyuncs.com/demo/%E7%BB%8F%E6%96%B9%E5%A4%A7%E5%B8%88%E5%85%AD%E7%BB%8F%E8%BE%A8%E8%AF%81%E6%BC%94%E7%A4%BA2024-11-16.mp4';
+
+    document.querySelectorAll('figure img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightboxCaption.textContent = img.dataset.caption || img.alt || '';
+        lightboxVideoLink.classList.remove('visible');
+        page19TopVideoLink.classList.remove('visible');
+        if (img.src.includes(videoLinkSrc)) {
+          lightboxVideoLink.href = videoUrl;
+          lightboxVideoLink.classList.add('visible');
+        } else if (img.src.includes(page19TopVideoLinkSrc)) {
+          page19TopVideoLink.href = page19TopVideoUrl;
+          page19TopVideoLink.classList.add('visible');
+        }
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Keep link clickable without closing lightbox
+    lightboxVideoLink.addEventListener('click', (e) => { e.stopPropagation(); });
+    page19TopVideoLink.addEventListener('click', (e) => { e.stopPropagation(); });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target === lightboxImgWrap || e.target === lightboxImg) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Back to top
+    const backTop = document.getElementById('back-top');
+    window.addEventListener('scroll', () => {
+      backTop.classList.toggle('visible', window.scrollY > 600);
+    });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>
